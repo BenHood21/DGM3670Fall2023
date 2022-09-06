@@ -1,0 +1,109 @@
+int $number;
+$number = 27;
+print ($number);
+
+string $name;
+$name = "david"
+print ($name);
+$name = "elizabeth";
+print($name);
+
+float $price = 29.99;
+print ($price);
+
+
+//treated as boolean
+int $grade = 1; //value is true
+
+//array
+float $position [] ={-8.8, -1.8, 9.4, 5.6};
+//                     0     1     2    3   4
+
+$position[0] = 5.9
+$position[0] = -.3
+$position[0] = -5.7
+print ($position[0]);
+
+
+/*
+
+    int (integer): any whole value number 1, -45, 100000
+    float (float/decimal); 3.14, 4.0, -10.5
+    sring (text): "car", "picnic", "hellow world", "365"
+    bool (boolean - True/False): 1 or 0
+    array (container of multiple values): [1,30,56], ["steve", "bob", "stacy"]
+
+/*
+
+/*
+    Opperatiors
+
+---Arithmetic---
+
+    + : Addition 3.5 + 5.2; 
+                ("Hello" + "World") => "Hello World"
+
+                - : Subtraction  7.3 - 2.1 => 5.2
+
+                * : Multiplication 3 * 5 => 15
+
+                / : Division 15 / 3 => 5
+
+                ++ Incresment
+
+                            int Snum = 13;
+                            $num++; //$num is now 14
+
+                -- : Decrement
+                            
+                            int Snum = 13;
+                            $num++; //$num is now 13
+                
+                % : Modulus 13 % 5 => 3  //
+
+                ^ : Power  3 ^ 5
+
+---Assignment---
+
+= : Assingment (from right to left)
+                int $num = 5;
+
++= : Add Value to Variable and reassign to variable
+        int $num = 0;
+        $num = $num +10;
+        $num += 10;
+
+-= : Subtract value fro mvariable and reassign to the variable
+
+*= : Multiply ""
+/= : Divide ""
+%= : Modulue ""
+^= : Power ""
+
+---Comparison---
+
+== : Equal to 3 == 5 (returns True or False : 1 or 0)
+
+!= : Not equal to 3 != 5
+
+> Greater than 3 > 5
+
+< : Less than 3 < 5
+
+>= Greater than or equal to     3 >= 5
+
+<= Less than or equal too       3 <= 5
+
+---Logical---
+
+Returns True or False : 1 or 0
+
+&& : And
+
+|| : Or
+
+| : Not
+
+
+
+/*

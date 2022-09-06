@@ -1,0 +1,92 @@
+//Create Body
+float $size = 10;
+
+polySphere -r $size -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -os - wd 0 $size 0;
+rename "pSphere1" "Body_Base";
+polySphere -r ($size - 1) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -os -wd 0 (($size * 2) + ($size - 1)) 0;
+rename "pSphere1" "Body_Mid";
+polySphere -r ($size - 2) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -os -wd 0 (($size * 2) + (($size - 1) * 2) + ($size - 2)) 0;
+rename "pSphere1" "Head";
+
+//Creating Arms
+float $length = $size * 2;
+
+polyCylinder -r ($length / 25) -h ($length * 1) -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r -os - wd 0 ($length / 2) 0;
+rename "pCylinder1" "Arm";
+
+
+polyCylinder -r ($length / 25) -h ($length * 1) -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r -os - wd 0 ($length / 2) 0;
+rename "pCylinder1" "Finger";
+scale -r .5 .5 .5;
+move -r -os - wd 0 (($length / 2));
+polyUnite -ch 1 -mergeUVSets 1 -centerPivot -name Arm Finger Arm;
+select -tgl Body_Mid;
+MatchTransform;
+select -cl  ;
+select -r Arm1;
+rotate -r -os -fo 90 -90 0 ;
+move -r -os - wd 0 0 0;
+
+DeleteHistory;
+MirrorPolygonGeometry;
+polyMirrorFace  -cutMesh 1 -axis 0 -axisDirection 1 -mergeMode 1 -mergeThresholdType 0
+-mergeThreshold 0.001 -mirrorAxis 2 -mirrorPosition 0 -smoothingAngle 30 -flipUVs 0
+-ch 1 Arm1;
+setAttr "polyMirror1.cutMesh" 0;
+setAttr "polyMirror1.mergeThreshold" 0;
+setAttr "polyMirror1.mirrorPosition" ($size + 1);
+
+//Create Nose
+polyCylinder -r ($length / 25) -h ($length * .5) -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+rename "pCylinder1" "Nose";
+select -tgl Head;
+MatchTransform;
+select -cl  ;
+select -r Nose;
+rotate -r -os -fo 90 0 0 ;
+move -r -os - wd 0 ($length / 2) 0;
+
+//Create Hats
+polyCylinder -r 10 -h 1 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+select -r pCylinder1.f[40:59] ;
+PolyExtrude;
+hilite pCylinder1.f[40:59] ;
+selectMode -component ;
+select -r pCylinder1.f[40:59] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx -9.536743164e-07
+-pvy 0.5 -pvz -1.907348633e-06 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCylinder1.f[40:59];
+scale -r -p -9.53674e-07cm 0.5cm -1.90735e-06cm 0.806758 0.806758 0.806758 ;
+PolyExtrude;
+select -r pCylinder1.f[40:59] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx -9.536743164e-07
+-pvy 0.5 -pvz -1.907348633e-06 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 8 -smoothingAngle 30 pCylinder1.f[40:59];
+select -cl  ;
+select -r pCylinder1 ;
+select -tgl Head ;
+MatchTransform;
+select -cl;
+select -r pCylinder1 ;
+move -r -os - wd 0 ($size /2) 0;
+rename "pCylinder1" "Hat";
+select -cl  ;
+
+//Create Eyes
+polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+rename "pSphere1" "Eye";
+select -tgl Head;
+MatchTransform;
+select -cl;
+select -r Eye;
+move -r -os - wd ($size/4) ($size - 8) ($size - 2);
+MirrorPolygonGeometry;
+polyMirrorFace  -cutMesh 1 -axis 0 -axisDirection 1 -mergeMode 1
+-mergeThresholdType 0 -mergeThreshold 0.001 -mirrorAxis 2 -mirrorPosition 0
+-smoothingAngle 30 -flipUVs 0 -ch 1 Eye;
+
+//Creating Smile
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
