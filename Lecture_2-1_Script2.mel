@@ -89,4 +89,10 @@ polyMirrorFace  -cutMesh 1 -axis 0 -axisDirection 1 -mergeMode 1
 -smoothingAngle 30 -flipUVs 0 -ch 1 Eye;
 
 //Creating Smile
-polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+polyCube -w 3 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+rename "pCube1" "Mouth";
+select -tgl Nose;
+MatchTransform;
+select -cl;
+select -r Mouth;
+move -r -os -wd 0 -3 ($size / 3);
