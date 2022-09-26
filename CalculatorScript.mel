@@ -1,0 +1,85 @@
+//Sum (addition) of 2 or more float values
+//Difference (subtraction ) of 2 or more values
+//Multiplication of 2 or more values
+//Division of 2 or more values
+//Power (x raised power n, eg. x³)
+//Mean (or average)
+//Median
+
+
+global proc AdditonSub(float $num01, float $num02, float $num03)
+{
+     float $addition = $num01 + $num02 + $num03;
+    print ($num01 + "plus" + $num02 + $num03 + "=" + $addition + "\n");
+}
+global proc DifferenceSub(float $num01, float $num02, float $num03)
+{
+     float $subtraction = $num01 - $num02 - $num03;
+    print ($num01 + "minus" + $num02 + $num03 + "=" + $subtraction + "\n");
+}
+global proc MultiplicationSub(float $num01, float $num02, float $num03)
+{
+     float $multiply = $num01 * $num02 * $num03;
+    print ($num01 + "multiply by" + $num02 + $num03 + "=" + $multiply + "\n");
+}
+global proc DivisionSub(float $num01, float $num02, float $num03)
+{
+    float $divide = $num01 / $num02 / $num03;
+    print ($num01 + "divide by" + $num02 + $num03 + "=" + $divide + "\n");
+}
+global proc PowerSub(float $num01, float $num02, float $num03)
+{
+    float $power = `pow $num01 $num02 $num03` ;
+    print($num01 + "to the power of " + $num02 + $num03 + "=" + $power + "\n");
+}
+
+
+global proc MeanSub(float $num01, float $num02, float $num03)
+{
+    float $mean = ($num01 + $num02 + $num03)/3;
+    print("The average of "+ $num01 + "," +$num02 + "," + $num03 + $mean + "\n");
+}
+global proc MedianSub(float $num01, float $num02, float $num03)
+{
+    float $median = `clamp $num01 $num02 $num03`;
+    print($median);
+}
+
+
+global proc Calculator (float $num01, float $num02, float $num03, int $operation)
+{
+    if ($operation == 1)
+    {
+        AdditionSub($num01, $num02, $num03);
+    }
+     else if ($operation == 2)
+    {
+        DifferenceSub($num01, $num02, $num03);
+    }
+    else if ($operation == 3)
+    {
+        MultiplicationSub($num01, $num02, $num03);
+    }
+    else if ($operation == 4)
+    {
+        DivisionSub($num01, $num02, $num03);
+    }
+    else if ($operation == 5)
+    {
+        PowerSub($num01, $num02, $num03);
+    }
+    else if ($operation == 6)
+    {
+        MeanSub($num01, $num02, $num03);
+    }
+    else if ($operation == 7)
+    {
+        MedianSub($num01, $num02, $num03);
+    }
+    else
+    {
+        print("please enter 3 valid float variable and an integer between 1-7");
+    }
+
+    Calculator (4, 5, 2, 6);
+}
