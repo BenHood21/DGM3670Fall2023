@@ -1,0 +1,160 @@
+//Sum (addition) of 2 or more float values
+//Difference (subtraction ) of 2 or more values
+//Multiplication of 2 or more values
+//Division of 2 or more values
+//Power (x raised power n, eg. x³)
+//Mean (or average)
+//Median
+
+
+global proc Addition()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $addition = $value1 + $value2;
+
+     floatField -e -value $addition $field3;
+
+     textField -e -text("The sum of " + $value1 + " and " + $value2 + " is " + $addition + ".")$field4;
+}
+
+global proc Subtraction()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $subtraction = $value1 - $value2;
+
+     floatField -e -value $subtraction $field3;
+
+     textField -e -text("The difference of " + $value1 + " and " + $value2 + " is " + $subtraction + ".")$field4;
+}
+
+global proc Multipication()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $multiplied = $value1 * $value2;
+
+     floatField -e -value $multiplied $field3;
+
+     textField -e -text("The product of " + $value1 + " and " + $value2 + " is " + $multiplied + ".")$field4;
+}
+
+global proc Division()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $division = $value1 / $value2;
+
+     floatField -e -value $division $field3;
+
+     textField -e -text("The Remainder of " + $value1 + " and " + $value2 + " is " + $division + ".")$field4;
+}
+
+global proc Power()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $power = `pow $value1 $value2`;
+
+     floatField -e -value $power $field3;
+
+     textField -e -text("The Power of " + $value1 + " and " + $value2 + " is " + $power + ".")$field4;
+}
+
+global proc Mean()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $mean = ($value1 + $value2) /2;
+
+     floatField -e -value $mean $field3;
+
+     textField -e -text("The Mean of " + $value1 + " and " + $value2 + " is " + $mean + ".")$field4;
+}
+
+global proc Median()
+{
+    string $field1 = `optionVar -q "firstField"`;
+    string $field2 = `optionVar -q "secondField"`;
+    string $field3 = `optionVar -q "thirdField"`;
+    string $field4 = `optionVar -q "myTextField"`;
+
+    float $value1 = `floatField -q -value $field1`;
+    float $value2 = `floatField -q -value $field2`;
+
+     float $median = `clamp $value1 $value2`;
+
+     floatField -e -value $median $field3;
+
+     textField -e -text("The Median of " + $value1 + " and " + $value2 + " is " + $median + ".")$field4;
+}
+
+string $mwindow = "My_Calc_UI";
+
+if (`window -exists $mWindow`)
+
+ deleteUI $mWindow;
+
+string $mWindow = `window-height 300
+                          -width 400
+                          -sizeable 1
+                          -width 400
+                          -title "Calc Tool Window"
+                          $mWindow`;
+string $mColumn = `columnLayout -adjustableColumn 1
+                                -parent $mWindow`;
+
+button -parent $mColumn -label "Say Hello!" -command "print (\"Hello World\")";
+
+optionVar - stringValue "firstField" `floatField`;
+optionVar - stringValue "secondField" `floatField`;
+optionVar - stringValue "thirdField" `floatField -editable 0`;
+optionVar - stringValue "myTextField" `textField -editable 0`;
+
+
+button -parent $mColumn -label "Addition" -command Addition;
+button -parent $mColumn -label "Subtraction" -command Subtraction;
+button -parent $mColumn -label "Multipication" -command Multipication;
+button -parent $mColumn -label "Division" -command Division;
+button -parent $mColumn -label "Power" -command Power;
+button -parent $mColumn -label "Mean" -command Mean;
+button -parent $mColumn -label "Median" -command Median;
+
+showWindow $mWindow;
