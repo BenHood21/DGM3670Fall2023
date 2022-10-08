@@ -1,12 +1,3 @@
-//Sum (addition) of 2 or more float values
-//Difference (subtraction ) of 2 or more values
-//Multiplication of 2 or more values
-//Division of 2 or more values
-//Power (x raised power n, eg. x³)
-//Mean (or average)
-//Median
-
-
 global proc Addition()
 {
     string $field1 = `optionVar -q "firstField"`;
@@ -158,3 +149,9 @@ button -parent $mColumn -label "Mean" -command Mean;
 button -parent $mColumn -label "Median" -command Median;
 
 showWindow $mWindow;
+
+/* To call the UI You have to create a window specifying size and naming it to keep the Maya Underworld from swallowing future functions.
+Once it is create you need to specify the type of UI layout you are using (column, grid, etc)
+Once your UI is created it won't show the physical window you interact with unless using the command "showWindow  [string]" where string is
+the name of the window you are calling.
+*/ 
