@@ -1,0 +1,45 @@
+global proc Cube()
+{CreatePolygonCube;
+string $components[] = `ls -selection -flatten`;
+vector $sphrandValue = `sphrand(5)`;
+move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
+}
+global proc Sphere()
+{CreatePolygonSphere;
+string $components[] = `ls -selection -flatten`;
+vector $sphrandValue = `sphrand(5)`;
+move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
+}global proc Plane()
+{CreatePolygonPlane;
+string $components[] = `ls -selection -flatten`;
+vector $sphrandValue = `sphrand(5)`;
+move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
+}global proc Cylinder()
+{CreatePolygonCylinder;
+string $components[] = `ls -selection -flatten`;
+vector $sphrandValue = `sphrand(5)`;
+move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
+}
+
+string $RandomWindow = "Random_Object_UI";
+
+if (`window -exists $RandomWindow`)
+
+ deleteUI $RandomWindow;
+
+string $RandomWindow = `window-height 300
+                          -width 400
+                          -sizeable 1
+                          -width 400
+                          -title "Random Object Window"
+                         $RandomWindow`;
+string $mColumn = `columnLayout -adjustableColumn 1
+                                -parent $RandomWindow`;
+flowLayout -columnSpacing 1 -w 220 -h 40;
+symbolButton -image "cube.xpm" -command Cube;
+symbolButton -image "sphere.xpm" -command Sphere;
+symbolButton -image "plane.xpm" -command Plane;
+symbolButton -image "cylinder.xpm" -command Cylinder;
+
+
+showWindow $RandomWindow;
