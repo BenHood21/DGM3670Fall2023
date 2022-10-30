@@ -117,20 +117,20 @@ global proc Median()
      textField -e -text("The Median of " + $value1 + " and " + $value2 + " is " + $median + ".")$field4;
 }
 
-string $mwindow = "My_Calc_UI";
+string $CalcWindow = "My_Calc_UI";
 
-if (`window -exists $mWindow`)
+if (`window -exists $CalcWindow`)
 
- deleteUI $mWindow;
+ deleteUI $CalcWindow;
 
-string $mWindow = `window-height 300
+string $CalcWindow = `window-height 300
                           -width 400
                           -sizeable 1
                           -width 400
                           -title "Calc Tool Window"
-                          $mWindow`;
+                         $CalcWindow`;
 string $mColumn = `columnLayout -adjustableColumn 1
-                                -parent $mWindow`;
+                                -parent $CalcWindow`;
 
 button -parent $mColumn -label "Say Hello!" -command "print (\"Hello World\")";
 
@@ -148,7 +148,7 @@ button -parent $mColumn -label "Power" -command Power;
 button -parent $mColumn -label "Mean" -command Mean;
 button -parent $mColumn -label "Median" -command Median;
 
-showWindow $mWindow;
+showWindow $CalcWindow;
 
 /* To call the UI You have to create a window specifying size and naming it to keep the Maya Underworld from swallowing future functions.
 Once it is create you need to specify the type of UI layout you are using (column, grid, etc)

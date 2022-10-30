@@ -1,21 +1,30 @@
 global proc Cube()
-{CreatePolygonCube;
+{
+    CreatePolygonCube;
 string $components[] = `ls -selection -flatten`;
 vector $sphrandValue = `sphrand(5)`;
 move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
 }
+
 global proc Sphere()
-{CreatePolygonSphere;
+{
+    CreatePolygonSphere;
 string $components[] = `ls -selection -flatten`;
 vector $sphrandValue = `sphrand(5)`;
 move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
-}global proc Plane()
-{CreatePolygonPlane;
+}
+
+global proc Plane()
+{
+    CreatePolygonPlane;
 string $components[] = `ls -selection -flatten`;
 vector $sphrandValue = `sphrand(5)`;
 move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
-}global proc Cylinder()
-{CreatePolygonCylinder;
+}
+
+global proc Cylinder()
+{
+CreatePolygonCylinder;
 string $components[] = `ls -selection -flatten`;
 vector $sphrandValue = `sphrand(5)`;
 move -relative ($sphrandValue.x) ($sphrandValue.y) ($sphrandValue.z) $components;
